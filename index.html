@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Diese Seite selbst nicht zwischenspeichern. Sonst lädt der Browser nach
+     einer Änderung weiter die alte Fassung – samt der alten Versionsstempel
+     an den Dateien unten, wodurch auch die nicht mehr greifen. Die Dateien
+     selbst dürfen gecacht werden, dafür sorgt der Stempel. -->
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<title>SYNAPSE</title>
+<link rel="stylesheet" href="css/style.css?v=20261014i">
+</head>
+<body>
+
+<!-- Auf schmalen Bildschirmen wird statt der App nur dieser Hinweis gezeigt.
+     Die Übungen brauchen Maus und Tastatur – auf einem Handy ließe sich keine
+     einzige davon sinnvoll machen. -->
+<div class="nur-desktop" id="nur-desktop">
+  <div class="nur-desktop-inhalt">
+    <span class="marke-name">SYNAPSE</span>
+    <h1>Für große Bildschirme gebaut</h1>
+    <p>
+      Die Übungen brauchen <b>Maus und Tastatur</b>: einer Spur folgen,
+      Zahlencodes auf dem Ziffernblock tippen, mit beiden Händen
+      gleichzeitig verschiedene Takte klopfen. Auf einem Handy geht davon
+      nichts.
+    </p>
+    <p class="nur-desktop-klein">
+      Öffne SYNAPSE an einem Computer – oder zieh das Fenster breiter, falls
+      du schon an einem sitzt.
+    </p>
+  </div>
+</div>
+
+<!-- Dekorativer Hintergrund: langsam treibende Neuronen (js/hintergrund.js) -->
+<canvas id="hintergrund-canvas" aria-hidden="true"></canvas>
+
+<header class="kopf">
+  <div class="kopf-inhalt">
+    <div class="marke">
+      <span class="marke-name">SYNAPSE</span>
+      <span class="marke-unter">Beidhändiges Training</span>
+    </div>
+    <nav class="kopf-nav">
+      <button class="nav-knopf" data-ansicht="menue">Übungen</button>
+      <button class="nav-knopf" data-ansicht="statistik">Statistik</button>
+      <button class="nav-knopf" data-ansicht="netz">Netz</button>
+      <button class="nav-knopf" data-ansicht="daten">Daten</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ====================== Ansicht: Menü ====================== -->
+  <section class="ansicht" id="ansicht-menue">
+
+    <div class="streifen">
+      <div class="kennzahl">
+        <span class="kennzahl-wert" id="kz-streak">0</span>
+        <span class="kennzahl-text">Tage in Folge</span>
+      </div>
+      <div class="kennzahl">
+        <span class="kennzahl-wert" id="kz-durchgaenge">0</span>
+        <span class="kennzahl-text">Durchgänge</span>
+      </div>
+      <div class="kennzahl">
+        <span class="kennzahl-wert" id="kz-minuten">0</span>
+        <span class="kennzahl-text">Minuten geübt</span>
+      </div>
+      <div class="kennzahl">
+        <span class="kennzahl-wert" id="kz-heute">–</span>
+        <span class="kennzahl-text">heute</span>
+      </div>
+    </div>
+
+    <!-- Tagesplan: wird von js/tagesplan.js gefüllt -->
+    <div class="flaeche plan" id="tagesplan"></div>
+
+    <h1 class="titel">Alle Übungen</h1>
+    <p class="untertitel">
+      Freies Üben, unabhängig vom Tagesplan. Kurz und täglich wirkt mehr als
+      selten und lang.
+    </p>
+
+    <div class="kacheln" id="kacheln"><!-- von js/app.js gefüllt --></div>
+
+    <details class="hinweis">
+      <summary>Was hier wirklich trainiert wird</summary>
+
+      <h3>Worum es geht</h3>
+      <p>
+        Feinmotorik und Koordination. Jede Übung verlangt entweder, dass beide
+        Hände gleichzeitig etwas Verschiedenes tun, oder dass die
+        nicht-dominante Hand übernimmt, was sonst die andere erledigt. Dazu
+        kommen Aufmerksamkeit, Hemmung – also eine automatische Reaktion
+        unterdrücken, wie beim Stroop-Test – und Automatisierung: Bewegungs­folgen,
+        die irgendwann ohne Nachdenken ablaufen.
+      </p>
+      <p>
+        Das Gehirn verändert sich dabei tatsächlich; oft genutzte Bahnen werden
+        verstärkt. Dieser Effekt ist allerdings <b>spezifisch</b>: Du wirst gut in
+        dem, was du übst. Wer hier regelmäßig trainiert, schreibt mit links
+        sauberer und führt die Maus ruhiger. Dass davon Gedächtnis, Rechnen oder
+        Konzentration im Alltag profitieren, ist nicht belegt – Untersuchungen zu
+        Gehirnjogging zeigen immer wieder, dass der Übertrag auf andere Aufgaben
+        gering ausfällt.
+      </p>
+
+      <h3>Was hier nicht passiert</h3>
+      <p>
+        Diese App verbindet keine Gehirnhälften. Die sind über den Balken
+        (Corpus callosum) längst verbunden, mit rund 200 Millionen Nervenfasern,
+        von Geburt an. Auch das Bild vom „logischen links und kreativen rechts“
+        stimmt so nicht; die Aufgabenteilung im Gehirn ist feiner und von Mensch
+        zu Mensch verschieden.
+      </p>
+      <p>
+        Beidhändig zu werden macht dich nicht klüger und nicht kreativer. Es
+        macht dich beidhändiger – und das ist Grund genug.
+      </p>
+
+      <h3>Warum die Übungen so aufgebaut sind</h3>
+      <ul>
+        <li>
+          <b>Knapp über dem Können.</b> Zu leicht verändert nichts, zu schwer
+          frustriert nur. Dafür die Stufen, die sich nach jedem Durchgang
+          anpassen.
+        </li>
+        <li>
+          <b>Kurz und täglich.</b> Verteiltes Üben bringt mehr als dieselbe Zeit
+          am Stück. Zehn Minuten an fünf Tagen schlagen fünfzig Minuten an einem.
+        </li>
+        <li>
+          <b>Abwechslung.</b> Verschiedene Übungen festigen besser als stures
+          Wiederholen derselben – auch wenn es sich währenddessen mühsamer
+          anfühlt.
+        </li>
+        <li>
+          <b>Pausen und Schlaf.</b> Geübtes setzt sich danach, vor allem im
+          Schlaf. Der Fortschritt zeigt sich deshalb oft erst am nächsten Tag.
+        </li>
+      </ul>
+
+      <h3>Was die Zahlen taugen</h3>
+      <p>
+        Gemessen wird, was ein Browser messen kann: Tastendrücke, Mausposition,
+        Zeiten. Daraus entstehen Score, Dual-Task-Kosten und Hand-Unterschied.
+        Das sind brauchbare Zahlen, um den eigenen Verlauf zu verfolgen – keine
+        Diagnostik. Sie hängen auch an Tagesform, Schlaf, Maus und Unterlage.
+        Ein einzelner Durchgang sagt wenig, die Kurve über Wochen sagt viel.
+      </p>
+      <p>
+        Das Fortschrittsnetz ist ein Bild, keine Messung. Dort wachsen keine
+        Nervenzellen, dort wachsen deine Übungstage.
+      </p>
+
+      <h3>Wann du aufhören solltest</h3>
+      <p>
+        Bei Schmerzen in Hand, Handgelenk oder Unterarm: aufhören, nicht
+        durchziehen. Und wenn die Werte innerhalb eines Tages abfallen, ist das
+        Müdigkeit und nicht fehlendes Können – dann ist eine Pause die bessere
+        Übung.
+      </p>
+    </details>
+  </section>
+
+  <!-- ====================== Ansicht: Übung ====================== -->
+  <!-- Wird ab Schritt 2 von den Modulen in js/modules/ gefüllt. -->
+  <section class="ansicht" id="ansicht-uebung" hidden></section>
+
+  <!-- ====================== Ansicht: Ergebnis ====================== -->
+  <section class="ansicht" id="ansicht-ergebnis" hidden></section>
+
+  <!-- ====================== Ansicht: Statistik ====================== -->
+  <!-- Wird vollständig von js/statistik.js aufgebaut. -->
+  <section class="ansicht" id="ansicht-statistik" hidden></section>
+
+  <!-- ====================== Ansicht: Fortschrittsnetz ====================== -->
+  <!-- Wird vollständig von js/network.js aufgebaut. -->
+  <section class="ansicht" id="ansicht-netz" hidden></section>
+
+  <!-- ====================== Ansicht: Daten ====================== -->
+  <section class="ansicht" id="ansicht-daten" hidden>
+    <h1 class="titel">Daten</h1>
+    <p class="untertitel">
+      Alles liegt nur in diesem Browser (localStorage). Wer den Browserspeicher
+      löscht, löscht auch den Fortschritt – darum regelmäßig exportieren.
+    </p>
+
+    <div class="flaeche">
+      <h2 class="flaeche-titel">Speicher</h2>
+      <p class="flaeche-text" id="speicher-zustand">wird geprüft …</p>
+    </div>
+
+    <div class="flaeche">
+      <h2 class="flaeche-titel">Export</h2>
+      <p class="flaeche-text">
+        Speichert alle Durchgänge und Stufen als JSON-Datei.
+      </p>
+      <button class="knopf knopf-haupt" id="knopf-export">Als Datei speichern</button>
+    </div>
+
+    <div class="flaeche">
+      <h2 class="flaeche-titel">Import</h2>
+      <p class="flaeche-text">
+        Liest eine exportierte Datei ein. Durchgänge werden zusammengeführt,
+        doppelte (gleiche ID) nur einmal übernommen.
+      </p>
+      <label class="knopf" for="datei-import">Datei auswählen …</label>
+      <input type="file" id="datei-import" accept="application/json,.json" hidden>
+      <p class="meldung" id="import-meldung" hidden></p>
+    </div>
+
+    <div class="flaeche flaeche-warnung">
+      <h2 class="flaeche-titel">Alles löschen</h2>
+      <p class="flaeche-text">
+        Löscht jeden Durchgang und setzt alle Stufen zurück. Nicht umkehrbar –
+        vorher exportieren.
+      </p>
+      <button class="knopf knopf-warnung" id="knopf-loeschen">Alle Daten löschen</button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="fuss">
+  SYNAPSE · by Julian Harder · Daten bleiben auf diesem Gerät
+</footer>
+
+<!-- Klassische Skripte (keine ES-Module), damit die Datei per Doppelklick
+     ohne Server läuft. Reihenfolge: Werkzeuge zuerst, app.js zuletzt.
+
+     Das ?v= hinter jeder Datei ist ein Versionsstempel: Browser halten
+     Dateien sonst stunden- bis tagelang im Zwischenspeicher, und Änderungen
+     kämen erst nach einem harten Neuladen an. Bei Änderungen am Code den
+     Stempel in dieser Datei erhöhen – überall derselbe Wert. -->
+<script src="js/storage.js?v=20261014i"></script>
+<script src="js/difficulty.js?v=20261014i"></script>
+<script src="js/stats.js?v=20261014i"></script>
+<script src="js/bahnen.js?v=20261014i"></script>
+<script src="js/diagramme.js?v=20261014i"></script>
+<script src="js/statistik.js?v=20261014i"></script>
+<script src="js/network.js?v=20261014i"></script>
+<script src="js/tagesplan.js?v=20261014i"></script>
+<script src="js/ergebnis.js?v=20261014i"></script>
+<script src="js/hintergrund.js?v=20261014i"></script>
+<script src="js/app.js?v=20261014i"></script>
+<script src="js/modules/dualtask.js?v=20261014i"></script>
+<script src="js/modules/mirrorwrite.js?v=20261014i"></script>
+<script src="js/modules/mirrortrace.js?v=20261014i"></script>
+<script src="js/modules/sequence.js?v=20261014i"></script>
+<script src="js/modules/stroop.js?v=20261014i"></script>
+<script src="js/modules/rhythm.js?v=20261014i"></script>
+</body>
+</html>
